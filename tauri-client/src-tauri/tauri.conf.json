@@ -1,0 +1,1 @@
+{"productName":"dsh client","version":"0.1.0","identifier":"ai.deepseek.dsh.client","build":{"frontendDist":"../dist"},"app":{"windows":[{"title":"dsh client","width":1100,"height":760}],"security":{"csp":null}},"bundle":{"active":true,"targets":"all"}}

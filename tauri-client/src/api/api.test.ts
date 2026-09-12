@@ -1,0 +1,5 @@
+import { describe, expect, it, vi } from 'vitest'
+import { AuthClient } from './auth'
+import { SyncCache } from './sync'
+const server = { id: 'local', name: 'Mac', url: 'http://127.0.0.1:3080', kind: 'lan' as const, updatedAt: 1 }
+describe('client protocol', () => { it('logs in and attaches bearer token', async () => { const fetcher = vi.fn().mockResolvedValue(new Response(JSON.stringify({ accessToken: 'a', refreshToken: 'r', accessExpiresAt: 1, refreshExpiresAt: 2 }), { status: 200 })); const client = new AuthClient(server, fetcher); await client.login('u', 'p'); await client.request('/api/sessions'); expect((fetcher.mock.calls[1][1] as RequestInit).headers).toBeInstanceOf(Headers); expect(((fetcher.mock.calls[1][1] as RequestInit).headers as Headers).get('authorization')).toBe('Bearer a') }); it('keeps the newest sync revision', () => { const cache = new SyncCache(); cache.apply({ conversations: [], messages: [], revision: 2 }); cache.apply({ conversations: [], messages: [], revision: 1 }); expect(cache.value.revision).toBe(2) }) })
