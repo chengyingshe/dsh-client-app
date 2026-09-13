@@ -1,0 +1,27 @@
+{
+  "name": "@deepseek-ai/dsh-auth-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./config": "./src/config.ts"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "pnpm vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^6.0.0",
+    "vitest": "^4.0.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2"
+  }
+}

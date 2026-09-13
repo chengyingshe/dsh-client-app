@@ -1,6 +1,6 @@
 # dsh 认证插件与桌面客户端
 
-为 [DeepSeek Harness](../deepseek-harness) 提供登录保护的 `dsh-plugin`，以及基于 Tauri 2 + React 的桌面客户端。插件负责保护 `dsh web` 的页面、HTTP API 和 WebSocket；客户端打开同一个 Web 登录页，登录一次后直接使用原始 dsh Web 界面。
+为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 提供登校验的 `dsh-plugin`，以及基于 Tauri 2 + React 的桌面客户端。插件负责保护 `dsh web` 的页面、HTTP API 和 WebSocket；客户端打开同一个 Web 登录页，登录一次后直接使用原始 dsh Web 界面。
 
 ## 应用预览
 
@@ -20,7 +20,8 @@
 
 ```text
 client-app/
-├── dsh-plugin/       # dsh Host 插件
+├── dsh-auth/         # dsh Host 登录校验插件
+├── dsh-cloudflare-tunnel/ # 可选公网穿透插件
 └── tauri-client/     # Tauri 2 + React 客户端
 ```
 
@@ -74,7 +75,7 @@ http://127.0.0.1:3099
 
 ## Cloudflare Tunnel
 
-如果希望通过公网访问，需要先安装并登录 `cloudflared`，再将域名路由到本地端口：
+公网穿透由可选的 `dsh-cloudflare-tunnel` 插件负责；不安装该插件时，`dsh-auth` 仍可独立提供登录校验。安装 Tunnel 插件后，将域名路由到本地端口：
 
 ```bash
 cloudflared tunnel route dns <tunnel-name-or-id> dsh.example.com
@@ -105,7 +106,12 @@ cloudflared tunnel --config /absolute/path/config.yml run <tunnel-name-or-id>
 插件：
 
 ```bash
-cd dsh-plugin
+cd dsh-auth
+pnpm install
+pnpm typecheck
+pnpm test
+
+cd ../dsh-cloudflare-tunnel
 pnpm install
 pnpm typecheck
 pnpm test

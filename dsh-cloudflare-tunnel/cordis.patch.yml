@@ -1,0 +1,4 @@
+patch:
+  packages:
+    - id: dsh-cloudflare-tunnel
+      name: '@deepseek-ai/dsh-cloudflare-tunnel-plugin'
