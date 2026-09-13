@@ -22,6 +22,7 @@
     "vitest": "^4.0.0"
   },
   "dependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
     "bcryptjs": "^3.0.2"
   }
 }

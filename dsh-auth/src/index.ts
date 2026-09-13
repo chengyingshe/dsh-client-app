@@ -1,6 +1,6 @@
 import type { AuthConfig } from './config.ts'
 import { loadConfig } from './config.ts'
-import type { Context } from '../../../deepseek-harness/vendor/cordis/lib/types/index.d.ts'
+import type { Context } from '@deepseek-ai/cordis'
 import { AuthService } from './auth-service.ts'
 import { hashPassword } from './password.ts'
 import { createAuthRoute, createHttpGuard, createUpgradeGuard } from './web-guard.ts'
@@ -17,8 +17,8 @@ export function apply(ctx: Context, config?: AuthConfig): AuthConfig {
   }
   const disposeHttp = webServer.registerGuard(createHttpGuard(service))
   const disposeUpgrade = webServer.registerUpgradeGuard(createUpgradeGuard(service))
-  const connection = (ctx as Context & { connection?: { registerAuthenticator?: (auth: (request: any) => boolean) => () => void } }).connection
-  const disposeConnection = connection?.registerAuthenticator?.((request) => {
+  const connection = (ctx as Context & { connection?: { registerAuthenticator?: (auth: (request: { headers: Record<string, string | undefined> }) => boolean) => () => void } }).connection
+  const disposeConnection = connection?.registerAuthenticator?.((request: { headers: Record<string, string | undefined> }) => {
     const auth = request.headers.authorization?.match(/^Bearer\s+(.+)$/i)?.[1] ?? request.headers.cookie?.match(/(?:^|;\s*)dsh_access=([^;]+)/)?.[1]
     if (!auth) return false
     try { service.tokens.authenticate(auth); return true } catch { return false }

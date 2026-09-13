@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: dsh-plugin
+      working-directory: dsh-auth
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-          cache-dependency-path: dsh-plugin/pnpm-lock.yaml
+          cache-dependency-path: dsh-auth/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm test
