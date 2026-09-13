@@ -15,18 +15,13 @@ function App() {
       localStorage.setItem('dsh.server.url', normalized)
       setUrl(normalized)
       setConnected(true)
-      window.location.assign(`${normalized}/auth/login`)
     } catch {
       setError('Enter a valid http(s) address')
     }
   }
 
-  return <main>
-    <h1>dsh client</h1>
-    <label>Server address<input value={url} onChange={event => setUrl(event.target.value)} placeholder="https://dsh.example.com" /></label>
-    {connected ? <><button onClick={() => { setConnected(false); localStorage.removeItem('dsh.server.url'); setUrl('') }}>Change server</button><button onClick={async () => { await fetch(`${url}/auth/logout`, { method: 'POST', credentials: 'include' }); window.location.assign(`${url}/auth/login`) }}>Sign out</button></> : <button onClick={openServer}>Connect</button>}
-    <p role="alert">{error}</p>
-  </main>
+  if (connected) return <div className="app-shell"><header><strong>dsh client</strong><span>{url}</span><button onClick={() => setConnected(false)}>Change server</button><button onClick={async () => { await fetch(`${url}/auth/logout`, { method: 'POST', credentials: 'include' }); setConnected(false) }}>Sign out</button></header><iframe title="dsh web" src={`${url}/auth/login`} /></div>
+  return <main><h1>dsh client</h1><label>Server address<input value={url} onChange={event => setUrl(event.target.value)} placeholder="https://dsh.example.com" /></label><button onClick={openServer}>Connect</button><p role="alert">{error}</p></main>
 }
 
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)
