@@ -24,6 +24,15 @@ dsh plugin --profile web add "link:$PWD"
 dsh plugin --profile web list
 ```
 
+发布到 npm 后，也可以直接安装正式包：
+
+```bash
+dsh plugin --profile web add @deepseek-ai/dsh-auth-plugin
+dsh plugin --profile web add @deepseek-ai/dsh-cloudflare-tunnel-plugin
+```
+
+维护者发布流程：在 GitHub 仓库的 Actions secrets 中添加 `NPM_TOKEN`（npm Automation Token），然后推送版本标签 `v0.1.0`。Workflow 会分别测试并发布两个插件。
+
 启动 dsh Web（本地测试凭据）：
 
 ```bash

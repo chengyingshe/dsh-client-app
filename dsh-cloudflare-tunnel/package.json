@@ -1,7 +1,12 @@
 {
   "name": "@deepseek-ai/dsh-cloudflare-tunnel-plugin",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Optional Cloudflare Tunnel plugin for DeepSeek Harness",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/chengyingshe/dsh-client-app.git", "directory": "dsh-cloudflare-tunnel" },
+  "files": ["src", "cordis.patch.yml", "README.md"],
+  "publishConfig": { "access": "public" },
   "type": "module",
   "exports": { ".": "./src/index.ts" },
   "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },

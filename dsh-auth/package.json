@@ -1,7 +1,12 @@
 {
   "name": "@deepseek-ai/dsh-auth-plugin",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Authentication guard plugin for DeepSeek Harness dsh Web",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/chengyingshe/dsh-client-app.git", "directory": "dsh-auth" },
+  "files": ["src", "cordis.patch.yml", "README.md"],
+  "publishConfig": { "access": "public" },
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
