@@ -1,5 +1,5 @@
 {
-  "name": "@deepseek-ai/dsh-auth-plugin",
+  "name": "@maximeshe/dsh-auth-plugin",
   "version": "0.1.0",
   "private": false,
   "description": "Authentication guard plugin for DeepSeek Harness dsh Web",

@@ -1,4 +1,4 @@
 # Adds the authentication Host plugin to the dsh web profile.
 - insert:
     - id: dsh-auth
-      name: '@deepseek-ai/dsh-auth-plugin'
+      name: '@maximeshe/dsh-auth-plugin'

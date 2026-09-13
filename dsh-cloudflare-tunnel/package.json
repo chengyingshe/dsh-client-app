@@ -1,5 +1,5 @@
 {
-  "name": "@deepseek-ai/dsh-cloudflare-tunnel-plugin",
+  "name": "@maximeshe/dsh-cloudflare-tunnel-plugin",
   "version": "0.1.0",
   "private": false,
   "description": "Optional Cloudflare Tunnel plugin for DeepSeek Harness",
